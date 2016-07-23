@@ -4,7 +4,10 @@
 	"version": "1.2b",
 
 	"description": "Glowing Bear web client does not ring when new messages happen in same channel or other channel. This allows that.",
-
+	"icons": {
+		"48": "icon48.png",
+		"96": "icon96.png"
+	},
 	"applications": {
 		"gecko": {
 			"id": "glowing-bear-channel-watcher@jetpack",
