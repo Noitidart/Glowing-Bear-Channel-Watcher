@@ -13,7 +13,7 @@
 	},
 
 	"content_scripts": [{
-		"matches": ["http://www.glowing-bear.org/#"],
+		"matches": ["http://www.glowing-bear.org/*"],
 		"js": ["watchify.js"]
 	}]
 }

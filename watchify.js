@@ -43,10 +43,12 @@ function initOtherChannelWatcher() {
 		watched_field.setAttribute('type', 'text')
 		watched_field.setAttribute('id', 'watched_channels');
 		watched_field.setAttribute('style', 'width:400px;');
-		watched_field.value = 'extdev, jsctypes, amo-editors, centril_noida';
+		watched_field.value = localStorage.getItem('extensions.glowing-bear-channel-watcher@jetpack.watched_channels') || ''; // 'extdev, jsctypes, amo-editors, janitor, centril_noida';
+		watched_field.addEventListener('change', function(e) {
+			localStorage.setItem('extensions.glowing-bear-channel-watcher@jetpack.watched_channels', e.target.value);
+		}, false);
 		document.querySelector('.title').appendChild(watched_field);
 	}
-
 	var observer = new MutationObserver(function(mutations) {
 		mutations.forEach(function(mutation) {
 			var watched_channels = watched_field.value.split(',').map(el=>el.trim().toLowerCase());
