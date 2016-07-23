@@ -10,6 +10,12 @@ function initCurrentChannelWatcher() {
 		mutations.forEach(function(mutation) {
 			if (mutation.addedNodes.length === 1 && mutation.addedNodes[0].nodeName == 'TBODY') {
 				if (!document.hasFocus()) {
+					var span = mutation.addedNodes[0].querySelector('td.message span');
+					if (span.classList.contains('cef-32') || span.classList.contains('cof-chat_day_change')) {
+						// its a server message, not a user message, so ignore it
+						console.log('its a server message, ignoring');
+						return;
+					}
 					console.log(mutation);
 					console.log('RING');
 					// var audioFile = 'http://www.glowing-bear.org/assets/audio/sonar.ogg';
