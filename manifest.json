@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Glowing Bear Channel Watcher",
-	"version": "1.1",
+	"version": "1.2b",
 
 	"description": "Glowing Bear web client does not ring when new messages happen in same channel or other channel. This allows that.",
 
