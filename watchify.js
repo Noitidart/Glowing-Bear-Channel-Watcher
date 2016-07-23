@@ -2,7 +2,7 @@
 function initCurrentChannelWatcher() {
 	var target = document.querySelector('#bufferlines table');
 	if (!target) {
-
+		console.log('no target');
 		setTimeout(1000, initCurrentChannelWatcher);
 		return;
 	}
@@ -13,18 +13,18 @@ function initCurrentChannelWatcher() {
 					var span = mutation.addedNodes[0].querySelector('td.message span');
 					if (span.classList.contains('cef-32') || span.classList.contains('cof-chat_day_change')) {
 						// its a server message, not a user message, so ignore it
-
+						console.log('its a server message, ignoring');
 						return;
 					}
-
-
+					console.log(mutation);
+					console.log('RING');
 					// var audioFile = 'http://www.glowing-bear.org/assets/audio/sonar.ogg';
 					var audio_domel = document.createElement('audio');
 					audio_domel.setAttribute('autoplay', 'autoplay');
 					audio_domel.setAttribute('src', 'assets/audio/sonar.ogg');
 
 				} else {
-
+					console.log('not ringing as doc has focus');
 				}
 			}
 		});
@@ -37,7 +37,7 @@ initCurrentChannelWatcher();
 function initOtherChannelWatcher() {
 	var target = document.querySelector('#sidebar ul')
 	if (!target) {
-
+		console.log('no target');
 		setTimeout(1000, initOtherChannelWatcher);
 		return;
 	}
@@ -58,18 +58,18 @@ function initOtherChannelWatcher() {
 	var observer = new MutationObserver(function(mutations) {
 		mutations.forEach(function(mutation) {
 			var watched_channels = watched_field.value.split(',').map(el=>el.trim().toLowerCase());
-
+			console.log('watched_channels:', watched_channels);
 			if (mutation.addedNodes.length === 1) {
 				var node = mutation.addedNodes[0];
 				if (node.nodeType == 3 && node.parentNode.classList.contains('badge')) {
 					var channel_name = node.parentNode.parentNode.querySelector('.buffername').textContent.trim().toLowerCase();
 					if (watched_channels.includes(channel_name)) {
-
+						console.log('#' + channel_name + ' has messages waiting and is watched');
 						var audio_domel = document.createElement('audio');
 						audio_domel.setAttribute('autoplay', 'autoplay');
 						audio_domel.setAttribute('src', 'assets/audio/sonar.ogg');
 					} else {
-
+						console.log('#' + channel_name + ' has messages waiting BUT NOT WATCHED');
 					}
 				}
 			}
