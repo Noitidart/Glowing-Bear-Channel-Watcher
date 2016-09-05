@@ -10,6 +10,11 @@ function initCurrentChannelWatcher() {
 		mutations.forEach(function(mutation) {
 			if (mutation.addedNodes.length === 1 && mutation.addedNodes[0].nodeName == 'TBODY') {
 				if (!document.hasFocus()) {
+					var prefix = mutation.addedNodes[0].querySelector('td.prefix .cof-chat_prefix_network');
+					if (prefix.textContent.trim() == '--') {
+						console.log('prefixed server message');
+						return;
+					}
 					var span = mutation.addedNodes[0].querySelector('td.message span');
 					if (span.classList.contains('cef-32') || span.classList.contains('cof-chat_day_change')) {
 						// its a server message, not a user message, so ignore it
